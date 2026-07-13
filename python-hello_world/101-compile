@@ -1,3 +1,32 @@
 #!/bin/bash
 
-python3 -m py_compile "$PYFILE" -o ${PYFILE%.*}.pyc
+# 1. Validation
+if [ -z "$PYFILE" ]; then
+    echo "Error: PYFILE not set" >&2
+    exit 1
+fi
+
+if [ ! -f "$PYFILE" ]; then
+    echo "Error: File '$PYFILE' not found" >&2
+    exit 1
+fi
+
+# 2. Compile
+# We run the command exactly how your environment expects it.
+python3 -m py_compile "$PYFILE"
+
+# 3. Transform and Move
+# Python's py_compile puts the file in __pycache__ with a specific name.
+# It uses the format: <filename>.<python_version>.pyc
+# We need to find that file and rename/move it.
+
+# We use find to locate the generated .pyc file in __pycache__
+PYC_FILE=$(find __pycache__ -name "${PYFILE%.*}*.pyc" | head -n 1)
+
+if [ -f "$PYC_FILE" ]; then
+    mv "$PYC_FILE" "${PYFILE%.*}.pyc"
+    echo "Compiled to: ${PYFILE%.*}.pyc"
+else
+    echo "Error: Compilation failed to generate output." >&2
+    exit 1
+fi
