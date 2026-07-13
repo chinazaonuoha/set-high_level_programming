@@ -1,10 +1,9 @@
 #!/usr/bin/python3
+import dis
+
 
 def magic_calculation(a, b):
-    """Performs a magic calculation based on the values of a and b."""
-    if a < b:
-        return a + b
-    elif a == b:
-        return a * b
-    else:
-        return a - b
+    return (a ** b) + 98
+
+
+dis.dis(magic_calculation)
