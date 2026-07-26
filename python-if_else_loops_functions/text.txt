@@ -1,0 +1,8 @@
+
+Deliverabl
+Document Creation: Create a new Google Doc named: Your first name_AI: Mastering the Shell with GitHub Copilot CLI (Replace Your first name with your actual first name). Edit this soc and dowload as PDF when you are done.
+Deliverables to paste in the document
+Screenshot of Interaction: Provide a screenshot of your terminal showing the prompt and part of the response from Instruction 2 (The Git command generation).
+Accuracy Ranking and Justification: In your own opinion, how accurate do you think the AI's response fixes the situation in the Git prompt (Instruction 2)? Rank on a scale of 1 to 10 (1=poor, 10=very accurate) and provide a short justification (1-2 sentences).
+Save and submit: Save the document as PDF and submit it here, also add the PDF in your set-se-103 project github repository
+
