@@ -2,7 +2,7 @@
 
 def islower(c):
     if not c:
-        return False
+        raise ValueError("Input string cannot be empty")
     if len(c) != 1:
-        return False
+        raise ValueError("Input must be a single character")
     return 'a' <= c <= 'z'
