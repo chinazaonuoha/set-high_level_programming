@@ -1,3 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/env python3
+
 def islower(c):
-    return c >= 'a' and c <= 'z'
+    if not c:
+        return False
+    if len(c) != 1:
+        return False
+    return 'a' <= c <= 'z'
