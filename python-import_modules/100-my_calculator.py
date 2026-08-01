@@ -18,7 +18,7 @@ if __name__ == "__main__":
     a, operator, b = int(sys.argv[1]), sys.argv[2], int(sys.argv[3])
 
     if operator not in ops:
-        print("Unknown operator. Available operators: +, -, *, /")
+        print("Unknown operator. Only: +, -, * and / available")
         sys.exit(1)
 
     result = ops[operator](a, b)
