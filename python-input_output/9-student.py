@@ -15,10 +15,16 @@ class Student:
         self.last_name = last_name
         self.age = age
 
-    def to_json(self):
+    def to_json(self, attr=None):
         """Return a dictionary representation of the student."""
-        return {
-            'first_name': self.first_name,
-            'last_name': self.last_name,
-            'age': self.age
+        if attr is None:
+            return {
+                'first_name': self.first_name,
+                'last_name': self.last_name,
+                'age': self.age
+            }
+        else:
+            return {
+                attr: getattr(self, attr)
+            }
         }
