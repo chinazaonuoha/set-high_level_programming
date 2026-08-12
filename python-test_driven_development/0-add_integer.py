@@ -1,8 +1,9 @@
 """
-This module contains a function that adds two integers 
-or floats and returns the result as an integer. It also 
+This module contains a function that adds two integers
+or floats and returns the result as an integer. It also
 includes error handling to ensure that the inputs are valid integers or floats.
 """
+
 
 def add_integer(a, b=98):
     """Adds 2 integers.
