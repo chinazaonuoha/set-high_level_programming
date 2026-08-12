@@ -1,0 +1,45 @@
+The ``0-add_integer`` module
+======================
+
+Using ``add_integer``
+-------------------
+
+Import the function from the module:
+    >>> add_integer = __import__('0-add_integer').add_integer
+
+Test normal addition with integers:
+    >>> add_integer(1, 2)
+    3
+
+Test addition with negative numbers:
+    >>> add_integer(100, -2)
+    98
+
+Test with only one argument (b should default to 98):
+    >>> add_integer(2)
+    100
+
+Test with float arguments (should be cast to integers):
+    >>> add_integer(100.3, -2)
+    98
+    >>> add_integer(2.5, 2.5)
+    4
+
+Test error handling when 'a' is not an integer or float:
+    >>> add_integer(4, "School")
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+    >>> add_integer("4", 3)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+Test error handling when parameters are missing or invalid (like None):
+    >>> add_integer(None)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+Test with boolean values (booleans subclass int in Python, but the project requires raising a TypeError):
+    >>> add_integer(True, 5)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
