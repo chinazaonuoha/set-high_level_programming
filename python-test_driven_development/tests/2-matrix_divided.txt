@@ -1,3 +1,4 @@
+"""
 The ``2-matrix_divided`` module
 ===============================
 
@@ -49,3 +50,4 @@ Test error when div is zero:
     >>> matrix_divided(matrix, 0)
     Traceback (most recent call last):
     ZeroDivisionError: division by zero
+"""

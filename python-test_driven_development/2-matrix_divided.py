@@ -1,8 +1,8 @@
 """
 This module contains a function that divides all elements of a
 matrix by a given divisor and returns a new matrix with the results
-rounded to 2 decimal places. It also includes error
-handling to ensure that the inputs are valid.
+rounded to 2 decimal places. It also includes comprehensive error
+handling to ensure that all inputs are valid.
 """
 
 
@@ -17,6 +17,10 @@ def matrix_divided(matrix, div):
         raise TypeError(
             "matrix must be a matrix (list of lists) of integers/floats"
         )
+
+    row_len = len(matrix[0])
+    if not all(len(row) == row_len for row in matrix):
+        raise TypeError("Each row of the matrix must have the same size")
 
     are_elements_numbers = all(
         all(
