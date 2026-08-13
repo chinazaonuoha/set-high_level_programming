@@ -1,0 +1,40 @@
+The ``say_my_name`` module
+==========================
+
+Using ``say_my_name``
+---------------------
+
+Import the function from the module:
+    >>> say_my_name = __import__('say_my_name').say_my_name
+
+Test normal first and last name:
+    >>> say_my_name("Walter", "White")
+    'My name is Walter White'
+
+Test first name only (last name defaults to empty string):
+    >>> say_my_name("Heisenberg")
+    'My name is Heisenberg'
+
+Test first name with an empty string as last name:
+    >>> say_my_name("Jesse", "")
+    'My name is Jesse'
+
+Test error when first_name is not a string (e.g., an integer):
+    >>> say_my_name(123, "White")
+    Traceback (most recent call last):
+    TypeError: first_name and last_name must be strings
+
+Test error when last_name is not a string (e.g., an integer):
+    >>> say_my_name("Walter", 123)
+    Traceback (most recent call last):
+    TypeError: first_name and last_name must be strings
+
+Test error when first_name is an empty string:
+    >>> say_my_name("", "White")
+    Traceback (most recent call last):
+    ValueError: first_name cannot be empty
+
+Test error when missing required first_name argument:
+    >>> say_my_name()
+    Traceback (most recent call last):
+    TypeError: say_my_name() missing 1 required positional argument: 'first_name'
