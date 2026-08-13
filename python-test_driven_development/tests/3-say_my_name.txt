@@ -11,7 +11,7 @@ Test normal first and last name:
     >>> say_my_name("Walter", "White")
     My name is Walter White
 
-Test first name only (last name defaults to empty string with trailing space in expectation if any, or cleanly formatted):
+Test first name only (last name defaults to empty string):
     >>> say_my_name("Heisenberg")
     My name is Heisenberg 
 
@@ -24,7 +24,3 @@ Test error when last_name is not a string:
     >>> say_my_name("Walter", 123)
     Traceback (most recent call last):
     TypeError: last_name must be a string
-
-Test first name only (last name defaults to empty string):
-    >>> say_my_name("Heisenberg")
-    My name is Heisenberg
