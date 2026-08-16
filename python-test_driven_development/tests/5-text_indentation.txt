@@ -16,7 +16,9 @@ Normal usage with periods, question marks, and colons:
     fine.
     <BLANKLINE>
 
-
+>>> text_indentation()
+    Traceback (most recent call last):
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
 
 Text without special punctuation:
     >>> text_indentation("Hello world")
