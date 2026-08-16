@@ -16,6 +16,9 @@ Normal usage with periods, question marks, and colons:
     fine.
     <BLANKLINE>
 
+Missing argument handling (if applicable):
+    >>> text_indentation()
+
 Text without special punctuation:
     >>> text_indentation("Hello world")
     Hello world
