@@ -1,0 +1,43 @@
+=================================
+How to use text_indentation
+=================================
+
+Import the function:
+    >>> text_indentation = __import__('0-text_indentation').text_indentation
+
+Normal usage with periods, question marks, and colons:
+    >>> text_indentation("Holberton. School? How are you: fine.")
+    Holberton.
+    <BLANKLINE>
+    School?
+    <BLANKLINE>
+    How are you:
+    <BLANKLINE>
+    fine.
+    <BLANKLINE>
+
+Text without special punctuation:
+    >>> text_indentation("Hello world")
+    Hello world
+
+Spaces handling around punctuation:
+    >>> text_indentation("Holberton.   School?   How are you:")
+    Holberton.
+    <BLANKLINE>
+    School?
+    <BLANKLINE>
+    How are you:
+    <BLANKLINE>
+
+TypeError handling (text must be a string):
+    >>> text_indentation(123)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+    >>> text_indentation(3.5)
+    Traceback (most recent call last):
+    TypeError: text must be a string
