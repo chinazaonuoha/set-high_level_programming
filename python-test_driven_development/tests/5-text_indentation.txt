@@ -3,7 +3,7 @@ How to use text_indentation
 =================================
 
 Import the function:
-    >>> text_indentation = __import__('0-text_indentation').text_indentation
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
 
 Normal usage with periods, question marks, and colons:
     >>> text_indentation("Holberton. School? How are you: fine.")
