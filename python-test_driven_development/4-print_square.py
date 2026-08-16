@@ -14,10 +14,6 @@ def print_square(size=0):
         TypeError: If size is not an integer.
         ValueError: If size is less than 0.
     """
-    if size is None:
-        raise TypeError(
-            "print_square() missing 1 required positional argument: 'size'"
-            )
     if not isinstance(size, int):
         raise TypeError("size must be an integer")
     if size < 0:
