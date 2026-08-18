@@ -60,6 +60,58 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(AttributeError):
             print(r.__height)
 
+    # --- Validation Tests ---
+
+    def test_width_type_validation(self):
+        """Test TypeError for invalid width types."""
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Rectangle("10", 2)
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Rectangle(10.5, 2)
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Rectangle(True, 2)
+
+    def test_height_type_validation(self):
+        """Test TypeError for invalid height types."""
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+            Rectangle(10, "2")
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+            Rectangle(10, 2.5)
+
+    def test_x_type_validation(self):
+        """Test TypeError for invalid x types."""
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            Rectangle(10, 2, "0", 1)
+
+    def test_y_type_validation(self):
+        """Test TypeError for invalid y types."""
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            Rectangle(10, 2, 0, "1")
+
+    def test_width_value_validation(self):
+        """Test ValueError for invalid width values (<= 0)."""
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            Rectangle(0, 2)
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            Rectangle(-5, 2)
+
+    def test_height_value_validation(self):
+        """Test ValueError for invalid height values (<= 0)."""
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+            Rectangle(10, 0)
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+            Rectangle(10, -2)
+
+    def test_x_value_validation(self):
+        """Test ValueError for invalid x values (< 0)."""
+        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
+            Rectangle(10, 2, -1, 0)
+
+    def test_y_value_validation(self):
+        """Test ValueError for invalid y values (< 0)."""
+        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
+            Rectangle(10, 2, 0, -1)
+
 
 if __name__ == '__main__':
     unittest.main()
