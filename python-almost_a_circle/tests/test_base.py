@@ -16,7 +16,10 @@ class TestBase(unittest.TestCase):
             print(Base.__nb_objects)
 
     def test_id_automatic(self):
-        """Test automatic ID assignment when id is not provided."""
+        """
+        Test automatic ID assignment
+        when id is not provided.
+        """
         b1 = Base()
         b2 = Base()
         self.assertEqual(b2.id, b1.id + 1)

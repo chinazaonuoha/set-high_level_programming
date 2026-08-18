@@ -18,7 +18,8 @@ class Base:
         """Initializes a new Base instance.
 
         Args:
-            id (int, optional): Explicit identifier. If None, an auto-incremented
+            id (int, optional): Explicit identifier.
+            If None, an auto-incremented
             integer is assigned based on __nb_objects.
         """
         if id is not None:
