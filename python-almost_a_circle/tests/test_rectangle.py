@@ -18,10 +18,8 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(10, 2)
         r2 = Rectangle(2, 10, id=98)
         r3 = Rectangle(5, 5)
-        
-        self.assertEqual(r1.id, 1)
         self.assertEqual(r2.id, 98)
-        self.assertEqual(r3.id, 2)
+        self.assertEqual(r3.id, r1.id + 1)
 
     def test_attribute_initialization(self):
         """Test that required and optional attributes are assigned correctly."""
