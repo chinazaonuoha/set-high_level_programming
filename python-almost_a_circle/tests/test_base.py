@@ -47,5 +47,25 @@ class TestBase(unittest.TestCase):
         """Test that passing an empty list returns the empty JSON list string '[]'."""
         self.assertEqual(Rectangle.to_json_string([]), "[]")
 
+    def test_save_to_file_rectangle(self):
+        """Test writing the JSON string representation of rectangles to a file."""
+        r = Rectangle(1, 2, 3, 4, 5)
+        Rectangle.save_to_file([r])
+        self.assertTrue(os.path.exists("Rectangle.json"))
+        
+        with open("Rectangle.json", "r") as f:
+            content = f.read()
+            expected = Rectangle.to_json_string([r.to_dictionary()])
+            self.assertEqual(content, expected)
+            os.remove("Rectangle.json")
+
+    def test_save_to_file_none(self):
+        """Test save_to_file with None handles it gracefully (writes '[]')."""
+        Rectangle.save_to_file(None)
+        self.assertTrue(os.path.exists("Rectangle.json"))
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+        os.remove("Rectangle.json")
+
 if __name__ == '__main__':
     unittest.main()
