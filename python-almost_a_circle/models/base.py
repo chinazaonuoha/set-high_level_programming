@@ -59,3 +59,4 @@ class Base:
         json_string = cls.to_json_string(list_dicts)
         with open(filename, "w") as f:
             f.write(json_string)
+
