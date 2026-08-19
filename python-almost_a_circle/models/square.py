@@ -14,6 +14,15 @@ class Square(Rectangle):
         """Return the print string representation of the Square."""
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
 
+    def to_dictionary(self):
+        """Return the dictionary representation of the Square."""
+        return {
+            "id": self.id,
+            "size": self.width,
+            "x": self.x,
+            "y": self.y
+        }
+
     @property
     def size(self):
         """Get the size of the square."""
