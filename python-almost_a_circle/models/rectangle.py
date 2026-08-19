@@ -89,3 +89,12 @@ class Rectangle(Base):
             result += " " * self.x + "#" * self.width + "\n"
         print(result, end="")
         return result
+    
+    def display(self):
+        """Print in stdout the Rectangle instance with the character #, 
+        taking into account x and y offsets.
+        """
+        for _ in range(self.y):
+            print()
+        for _ in range(self.height):
+            print(" " * self.x + "#" * self.width)

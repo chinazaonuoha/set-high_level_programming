@@ -144,6 +144,19 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(5, 10)
         self.assertTrue(str(r).startswith("[Rectangle]"))
         self.assertIn("0/0 - 5/10", str(r))
+    
+    def test_display_with_x_and_y(self):
+        """Test the display method with x and y offsets."""
+        import sys
+        from io import StringIO
+        r = Rectangle(2, 3, 2, 1)
+        expected_output = "\n  ##\n  ##\n  ##\n"
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r.display()
+        sys.stdout = sys.__stdout__ 
+        self.assertEqual(captured_output.getvalue(), expected_output)
+
 if __name__ == '__main__':
     unittest.main()
 
