@@ -6,7 +6,7 @@ from models.rectangle import Rectangle
 class TestSquare(unittest.TestCase):
     """Test suite for the Square class."""
 
-def test_square_str_representation(self):
+    def test_square_str_representation(self):
         """Test the overloaded __str__ output for Square."""
         s = Square(4, 2, 1, 12)
         self.assertEqual(str(s), "[Square] (12) 2/1 - 4")
