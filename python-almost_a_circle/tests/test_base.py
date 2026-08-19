@@ -3,9 +3,11 @@
 Unittest module for the Base class.
 """
 
+import os
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
+from models.square import Square
 
 
 class TestBase(unittest.TestCase):
@@ -66,6 +68,68 @@ class TestBase(unittest.TestCase):
         with open("Rectangle.json", "r") as f:
             self.assertEqual(f.read(), "[]")
         os.remove("Rectangle.json")
+
+    def tearDown(self):
+        """Clean up any files created during tests."""
+        files = ["Rectangle.json", "Square.json", "Rectangle.csv", "Square.csv"]
+        for file in files:
+            if os.path.exists(file):
+                os.remove(file)
+
+    def test_from_json_string(self):
+        """Test static method from_json_string."""
+        json_str = '[{"id": 89, "width": 10, "height": 4}]'
+        result = Base.from_json_string(json_str)
+        self.assertEqual(result, [{"id": 89, "width": 10, "height": 4}])
+        self.assertEqual(Base.from_json_string(None), [])
+        self.assertEqual(Base.from_json_string(""), [])
+
+    def test_create_rectangle(self):
+        """Test class method create for Rectangle."""
+        r = Rectangle(3, 5, 1, 2, 99)
+        r_dict = r.to_dictionary()
+        r_copy = Rectangle.create(**r_dict)
+        self.assertEqual(str(r), str(r_copy))
+        self.assertIsNot(r, r_copy)
+
+    def test_create_square(self):
+        """Test class method create for Square."""
+        s = Square(4, 1, 1, 77)
+        s_dict = s.to_dictionary()
+        s_copy = Square.create(**s_dict)
+        self.assertEqual(str(s), str(s_copy))
+        self.assertIsNot(s, s_copy)
+
+    def test_load_from_file_json(self):
+        """Test load_from_file method for Rectangle."""
+        r1 = Rectangle(10, 7, 2, 8, 1)
+        r2 = Rectangle(2, 4, 0, 0, 2)
+        Rectangle.save_to_file([r1, r2])
+        
+        list_rects = Rectangle.load_from_file()
+        self.assertEqual(len(list_rects), 2)
+        self.assertEqual(str(list_rects[0]), str(r1))
+        self.assertEqual(str(list_rects[1]), str(r2))
+
+    def test_save_and_load_file_csv(self):
+        """Test CSV serialization and deserialization for Rectangle and Square."""
+        r1 = Rectangle(4, 5, 1, 2, 10)
+        Rectangle.save_to_file_csv([r1])
+        
+        self.assertTrue(os.path.exists("Rectangle.csv"))
+        
+        list_rects = Rectangle.load_from_file_csv()
+        self.assertEqual(len(list_rects), 1)
+        self.assertEqual(str(list_rects[0]), str(r1))
+
+        # Test Square CSV as well
+        s1 = Square(3, 2, 1, 20)
+        Square.save_to_file_csv([s1])
+        self.assertTrue(os.path.exists("Square.csv"))
+        
+        list_squares = Square.load_from_file_csv()
+        self.assertEqual(len(list_squares), 1)
+        self.assertEqual(str(list_squares[0]), str(s1))
 
 if __name__ == '__main__':
     unittest.main()
