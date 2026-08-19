@@ -92,7 +92,6 @@ class Rectangle(Base):
         print(result, end="")
         return result
 
- 
     def update(self, *args):
         """Update the Rectangle instance with new attributes via *args.
         Order of arguments:
