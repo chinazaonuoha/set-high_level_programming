@@ -33,3 +33,10 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s.height, 5)
         self.assertEqual(s.x, 0)
         self.assertEqual(s.y, 0)
+
+    def test_square_area(self):
+        """Test that the area() method correctly calculates the area of a Square."""
+        s = Square(5)
+        self.assertEqual(s.area(), 25)
+        s2 = Square(10)
+        self.assertEqual(s2.area(), 100)

@@ -16,18 +16,14 @@ class Square(Rectangle):
 
     @property
     def size(self):
-        """Size getter."""
-        return self.__size
+        """Get the size of the square."""
+        return self.width
 
     @size.setter
     def size(self, value):
-        if type(value) is bool:
-            raise TypeError("size must be an integer")
-        if not isinstance(value, int):
-            raise TypeError("size must be an integer")
-        if value <= 0:
-            raise ValueError("size must be > 0")
-        self.__size = value
+        """Set the size of the square."""
+        self.width = value
+        self.height = value
 
     def area(self):
         """Return the area of the Square instance."""
