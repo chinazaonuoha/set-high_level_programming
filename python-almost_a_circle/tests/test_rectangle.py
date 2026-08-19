@@ -157,6 +157,16 @@ class TestRectangle(unittest.TestCase):
         sys.stdout = sys.__stdout__ 
         self.assertEqual(captured_output.getvalue(), expected_output)
 
+    def test_update_method(self):
+        """Test the update method with positional arguments."""
+        r = Rectangle(1, 1, 0, 0, 1)
+        r.update(89, 2, 3, 4, 5)
+        self.assertEqual(r.id, 89)
+        self.assertEqual(r.width, 2)
+        self.assertEqual(r.height, 3)
+        self.assertEqual(r.x, 4)
+        self.assertEqual(r.y, 5)
+
 if __name__ == '__main__':
     unittest.main()
 
