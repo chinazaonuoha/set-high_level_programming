@@ -133,6 +133,17 @@ class TestRectangle(unittest.TestCase):
         expected_output = "\n\n  ##\n  ##\n"
         self.assertEqual(r2.display(), expected_output)
 
+    def test_str_representation(self):
+        """Test the __str__ method output format."""
+        r = Rectangle(4, 6, 2, 1, 12)
+        expected_str = "[Rectangle] (12) 2/1 - 4/6"
+        self.assertEqual(str(r), expected_str)
+
+    def test_str_with_defaults(self):
+        """Test __str__ method with default x, y, and generated id."""
+        r = Rectangle(5, 10)
+        self.assertTrue(str(r).startswith("[Rectangle]"))
+        self.assertIn("0/0 - 5/10", str(r))
 if __name__ == '__main__':
     unittest.main()
 
