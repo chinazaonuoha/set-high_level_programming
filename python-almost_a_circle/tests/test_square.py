@@ -40,3 +40,16 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s.area(), 25)
         s2 = Square(10)
         self.assertEqual(s2.area(), 100)
+        
+    def test_square_to_dictionary(self):
+        """Test the dictionary representation of a Square."""
+        s = Square(5, 2, 1, 12)
+        s_dict = s.to_dictionary()
+        expected_dict = {
+            "id": 12,
+            "size": 5,
+            "x": 2,
+            "y": 1
+        }
+        self.assertEqual(s_dict, expected_dict)
+        self.assertIsInstance(s_dict, dict)
