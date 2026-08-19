@@ -81,7 +81,9 @@ class Rectangle(Base):
         return self.width * self.height
 
     def display(self):
-        """Print the Rectangle instance using the '#' character."""
+        """Print in stdout the Rectangle instance with the character #,
+        taking into account x and y offsets, and return the string.
+        """
         result = ""
         for _ in range(self.y):
             result += "\n"
@@ -90,18 +92,18 @@ class Rectangle(Base):
         print(result, end="")
         return result
 
-    def display(self):
-        """Print in stdout the Rectangle instance with the character #,
-        taking into account x and y offsets.
-        """
-        for _ in range(self.y):
-            print()
-        for _ in range(self.height):
-            print(" " * self.x + "#" * self.width)
-
+ 
     def update(self, *args):
-    """Update the Rectangle instance with new attributes."""
-        attributes = ["id", "width", "height", "x", "y"]
-        for i, arg in enumerate(args):
-            if i < len(attributes):
-                setattr(self, attributes[i], arg)
+        """Update the Rectangle instance with new attributes via *args.
+        Order of arguments:
+            1st: id
+            2nd: width
+            3rd: height
+            4th: x
+            5th: y
+        """
+        if args:
+            attributes = ["id", "width", "height", "x", "y"]
+            for i, arg in enumerate(args):
+                if i < len(attributes):
+                    setattr(self, attributes[i], arg)
