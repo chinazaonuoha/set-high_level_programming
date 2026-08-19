@@ -106,9 +106,10 @@ class Rectangle(Base):
             for i, arg in enumerate(args):
                 if i < len(attributes):
                     setattr(self, attributes[i], arg)
-    
+
     def update(self, *args, **kwargs):
-        """Update attributes using positional (*args) or keyword (**kwargs) arguments."""
+        """Update attributes using positional (*args)
+        or keyword (**kwargs) arguments."""
         if args and len(args) > 0:
             attributes = ["id", "width", "height", "x", "y"]
             for i, arg in enumerate(args):
