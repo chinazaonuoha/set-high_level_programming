@@ -123,6 +123,15 @@ class TestRectangle(unittest.TestCase):
         r3 = Rectangle(8, 7, 0, 0, 1)
         self.assertEqual(r3.area(), 56)
 
+    def test_display(self):
+        """Test the display method of the Rectangle."""
+        r1 = Rectangle(4, 3)
+        expected_output = "####\n####\n####\n"
+        self.assertEqual(r1.display(), expected_output)
+
+        r2 = Rectangle(2, 2, 2, 2)
+        expected_output = "\n\n  ##\n  ##\n"
+        self.assertEqual(r2.display(), expected_output)
 
 if __name__ == '__main__':
     unittest.main()
