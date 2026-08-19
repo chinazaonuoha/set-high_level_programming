@@ -6,6 +6,11 @@ from models.rectangle import Rectangle
 class TestSquare(unittest.TestCase):
     """Test suite for the Square class."""
 
+def test_square_str_representation(self):
+        """Test the overloaded __str__ output for Square."""
+        s = Square(4, 2, 1, 12)
+        self.assertEqual(str(s), "[Square] (12) 2/1 - 4")
+
     def test_square_is_rectangle(self):
         """Test that Square is an instance of Rectangle and object."""
         s = Square(5)
@@ -20,3 +25,11 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s.x, 0)
         self.assertEqual(s.y, 0)
         self.assertIsNotNone(s.id)
+
+    def test_square_size_only(self):
+        """Test creating a Square with only size (width and height validation)."""
+        s = Square(5)
+        self.assertEqual(s.width, 5)
+        self.assertEqual(s.height, 5)
+        self.assertEqual(s.x, 0)
+        self.assertEqual(s.y, 0)
