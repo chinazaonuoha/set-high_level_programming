@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module for Rectangle class."""
+"""Module for the Rectangle class."""
 from models.base import Base
 
 
@@ -16,11 +16,13 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """Get or set the width of the rectangle."""
+        """Width getter."""
         return self.__width
 
     @width.setter
     def width(self, value):
+        if type(value) is bool:
+            raise TypeError("width must be an integer")
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value <= 0:
@@ -29,11 +31,13 @@ class Rectangle(Base):
 
     @property
     def height(self):
-        """Get or set the height of the rectangle."""
+        """Height getter."""
         return self.__height
 
     @height.setter
     def height(self, value):
+        if type(value) is bool:
+            raise TypeError("height must be an integer")
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
         if value <= 0:
@@ -42,7 +46,7 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        """Get or set the x coordinate of the rectangle."""
+        """X getter."""
         return self.__x
 
     @x.setter
@@ -55,7 +59,7 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        """Get or set the y coordinate of the rectangle."""
+        """Y getter."""
         return self.__y
 
     @y.setter
@@ -65,3 +69,7 @@ class Rectangle(Base):
         if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
+
+    def area(self):
+        """Return the area of the Rectangle instance."""
+        return self.width * self.height
