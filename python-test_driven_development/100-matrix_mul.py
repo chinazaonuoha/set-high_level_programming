@@ -1,3 +1,17 @@
+"""
+This module provides a function to multiply two matrices after 
+validating their format and dimensions.
+The function checks for the following:
+1. Both inputs must be lists.
+2. Both inputs must be lists of lists.
+3. Both matrices must not be empty.
+4. Both matrices must contain only integers or floats.
+5. Both matrices must be rectangular (all rows of the same size).
+If any of these conditions are not met, the function raises an appropriate exception.
+The function also checks if the matrices can be multiplied 
+(the number of columns in the first matrix must equal the number of rows in the second matrix).
+"""
+
 def matrix_mul(m_a, m_b):
     """Multiplies two matrices after validating their format and dimensions."""
     # 1. Validate m_a is a list
