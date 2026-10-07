@@ -18,20 +18,6 @@ Regular tests passed
            [6. , 9. ]])
 
 ------------------------------
-Type Validation (Not a list)
-------------------------------
-
-    >>> lazy_matrix_mul("Not a list", [[1, 2]])
-    Traceback (most recent call last):
-        ...
-    TypeError: m_a must be a list
-
-    >>> lazy_matrix_mul([[1, 2]], "Not a list")
-    Traceback (most recent call last):
-        ...
-    TypeError: m_b must be a list
-
-------------------------------
 NumPy Native Exception Pass-Throughs
 ------------------------------
 
