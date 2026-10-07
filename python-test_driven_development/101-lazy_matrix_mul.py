@@ -18,4 +18,14 @@ def lazy_matrix_mul(m_a, m_b):
         TypeError: If m_a or m_b are not lists or contain invalid types.
         ValueError: If matrix shapes cannot be multiplied.
     """
+    if not isinstance(m_a, list):
+        raise TypeError("m_a must be a list")
+    if not isinstance(m_b, list):
+        raise TypeError("m_b must be a list")
+
+    if not all(isinstance(row, list) for row in m_a):
+        raise TypeError("m_a must be a list of lists")
+    if not all(isinstance(row, list) for row in m_b):
+        raise TypeError("m_b must be a list of lists")
+
     return np.matmul(m_a, m_b)
