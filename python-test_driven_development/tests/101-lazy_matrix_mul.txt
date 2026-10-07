@@ -19,16 +19,18 @@ Regular multiplication (returns NumPy ndarray):
            [6. , 9. ]])
 
 ------------------------------
-Type Validation (m_a and m_b must be lists)
+Type Validation Checks
 ------------------------------
 
-Correct output - case: m_a = "ALX" / m_b = [[5, 6], [7, 8]]
+Case: m_a = "ALX" / m_b = [[5, 6], [7, 8]]
+
     >>> lazy_matrix_mul("ALX", [[5, 6], [7, 8]])
     Traceback (most recent call last):
         ...
     TypeError: m_a must be a list
 
-Correct output - case: m_a = [[5, 6], [7, 8]] / m_b = "ALX"
+Case: m_a = [[5, 6], [7, 8]] / m_b = "ALX"
+
     >>> lazy_matrix_mul([[5, 6], [7, 8]], "ALX")
     Traceback (most recent call last):
         ...
@@ -45,7 +47,7 @@ Correct output - case: m_a = [[5, 6], [7, 8]] / m_b = "ALX"
     TypeError: m_b must be a list
 
 ------------------------------
-Structure Validation (List of lists)
+Structure Validation
 ------------------------------
 
     >>> lazy_matrix_mul([1, 2, 3], [[1, 2], [3, 4]])
@@ -57,13 +59,15 @@ Structure Validation (List of lists)
 Empty Matrix Validation
 ------------------------------
 
-Correct output - case: m_a = [[]] / m_b = [[5, 6], [7, 8]]
+Case: m_a = [[]] / m_b = [[5, 6], [7, 8]]
+
     >>> lazy_matrix_mul([[]], [[5, 6], [7, 8]])
     Traceback (most recent call last):
         ...
     ValueError: m_a can't be empty
 
-Correct output - case: m_a = [[5, 6], [7, 8]] / m_b = [[]]
+Case: m_a = [[5, 6], [7, 8]] / m_b = [[]]
+
     >>> lazy_matrix_mul([[5, 6], [7, 8]], [[]])
     Traceback (most recent call last):
         ...
@@ -78,13 +82,15 @@ Correct output - case: m_a = [[5, 6], [7, 8]] / m_b = [[]]
 Non-numeric Element Validation
 ------------------------------
 
-Correct output - case: m_a = [[5, "6"], [7, 8]] / m_b = [[5, 6], [7, 8]]
+Case: m_a = [[5, "6"], [7, 8]] / m_b = [[5, 6], [7, 8]]
+
     >>> lazy_matrix_mul([[5, "6"], [7, 8]], [[5, 6], [7, 8]])
     Traceback (most recent call last):
         ...
     TypeError: m_a should contain only integers or floats
 
-Correct output - case: m_a = [[5, 6], [7, 8]] / m_b = [[5, "6"], [7, 8]]
+Case: m_a = [[5, 6], [7, 8]] / m_b = [[5, "6"], [7, 8]]
+
     >>> lazy_matrix_mul([[5, 6], [7, 8]], [[5, "6"], [7, 8]])
     Traceback (most recent call last):
         ...
@@ -99,13 +105,15 @@ Correct output - case: m_a = [[5, 6], [7, 8]] / m_b = [[5, "6"], [7, 8]]
 Rectangular Row Size Validation
 ------------------------------
 
-Correct output - case: m_a = [[5, 6, 10], [7, 8]] / m_b = [[5, 6], [7, 8]]
+Case: m_a = [[5, 6, 10], [7, 8]] / m_b = [[5, 6], [7, 8]]
+
     >>> lazy_matrix_mul([[5, 6, 10], [7, 8]], [[5, 6], [7, 8]])
     Traceback (most recent call last):
         ...
     TypeError: each row of m_a must be of the same size
 
-Correct output - case: m_a = [[5, 6], [7, 8]] / m_b = [[5, 6, 1], [7, 8]]
+Case: m_a = [[5, 6], [7, 8]] / m_b = [[5, 6, 1], [7, 8]]
+
     >>> lazy_matrix_mul([[5, 6], [7, 8]], [[5, 6, 1], [7, 8]])
     Traceback (most recent call last):
         ...
@@ -115,7 +123,8 @@ Correct output - case: m_a = [[5, 6], [7, 8]] / m_b = [[5, 6, 1], [7, 8]]
 Incompatible Dimensions Validation
 ------------------------------
 
-Correct output - case: m_a = [[1, 2, 3], [3, 4, 5]] / m_b = [[1, 2], [3, 4]]
+Case: m_a = [[1, 2, 3], [3, 4, 5]] / m_b = [[1, 2], [3, 4]]
+
     >>> lazy_matrix_mul([[1, 2, 3], [3, 4, 5]], [[1, 2], [3, 4]])
     Traceback (most recent call last):
         ...
