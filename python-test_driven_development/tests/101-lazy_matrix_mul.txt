@@ -1,5 +1,5 @@
 ==================================
-Tests for 102-lazy_matrix_mul.py
+Tests for 101-lazy_matrix_mul.py
 ==================================
 
 Importing function:
