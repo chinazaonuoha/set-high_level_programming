@@ -1,0 +1,144 @@
+import unittest
+
+# Import your function here
+# from matrix_mul_module import matrix_mul
+
+
+class TestMatrixMul(unittest.TestCase):
+    """Unit tests for matrix_mul function."""
+
+    # -------------------------------------------------------------------------
+    # 1. Happy Path / Valid Operations
+    # -------------------------------------------------------------------------
+
+    def test_valid_integer_matrices(self):
+        """Test multiplication of standard integer matrices."""
+        m_a = [[1, 2], [3, 4]]
+        m_b = [[5, 6], [7, 8]]
+        expected = [[19, 22], [43, 50]]
+        self.assertEqual(matrix_mul(m_a, m_b), expected)
+
+    def test_valid_float_and_int_matrices(self):
+        """Test multiplication with floats and mixed numeric types."""
+        m_a = [[1.5, 2.0], [3.0, 4.5]]
+        m_b = [[2.0, 0.0], [0.0, 2.0]]
+        expected = [[3.0, 4.0], [6.0, 9.0]]
+        self.assertEqual(matrix_mul(m_a, m_b), expected)
+
+    def test_valid_rectangular_matrices(self):
+        """Test multiplication of compatible non-square (rectangular) matrices."""
+        # 2x3 multiplied by 3x2 results in a 2x2 matrix
+        m_a = [[1, 2, 3], [4, 5, 6]]
+        m_b = [[7, 8], [9, 1], [2, 3]]
+        expected = [[31, 19], [85, 55]]
+        self.assertEqual(matrix_mul(m_a, m_b), expected)
+
+    # -------------------------------------------------------------------------
+    # 2. Exception Testing (In Exact Validation Order)
+    # -------------------------------------------------------------------------
+
+    # Step 1: m_a must be a list
+    def test_m_a_not_a_list(self):
+        with self.assertRaises(TypeError) as ctx:
+            matrix_mul("not a list", [[1, 2], [3, 4]])
+        self.assertEqual(str(ctx.exception), "m_a must be a list")
+
+    # Step 2: m_b must be a list
+    def test_m_b_not_a_list(self):
+        with self.assertRaises(TypeError) as ctx:
+            matrix_mul([[1, 2], [3, 4]], 123)
+        self.assertEqual(str(ctx.exception), "m_b must be a list")
+
+    # Step 3: m_a must be a list of lists
+    def test_m_a_not_list_of_lists(self):
+        with self.assertRaises(TypeError) as ctx:
+            matrix_mul([1, 2, 3], [[1, 2], [3, 4]])
+        self.assertEqual(str(ctx.exception), "m_a must be a list of lists")
+
+    # Step 4: m_b must be a list of lists
+    def test_m_b_not_list_of_lists(self):
+        with self.assertRaises(TypeError) as ctx:
+            matrix_mul([[1, 2], [3, 4]], [1, 2, 3])
+        self.assertEqual(str(ctx.exception), "m_b must be a list of lists")
+
+    # Step 5: m_a can't be empty
+    def test_m_a_empty_outer(self):
+        with self.assertRaises(ValueError) as ctx:
+            matrix_mul([], [[1, 2], [3, 4]])
+        self.assertEqual(str(ctx.exception), "m_a can't be empty")
+
+    def test_m_a_empty_inner(self):
+        with self.assertRaises(ValueError) as ctx:
+            matrix_mul([[]], [[1, 2], [3, 4]])
+        self.assertEqual(str(ctx.exception), "m_a can't be empty")
+
+    # Step 6: m_b can't be empty
+    def test_m_b_empty_outer(self):
+        with self.assertRaises(ValueError) as ctx:
+            matrix_mul([[1, 2], [3, 4]], [])
+        self.assertEqual(str(ctx.exception), "m_b can't be empty")
+
+    def test_m_b_empty_inner(self):
+        with self.assertRaises(ValueError) as ctx:
+            matrix_mul([[1, 2], [3, 4]], [[]])
+        self.assertEqual(str(ctx.exception), "m_b can't be empty")
+
+    # Step 7: m_a element type checks
+    def test_m_a_invalid_element_string(self):
+        with self.assertRaises(TypeError) as ctx:
+            matrix_mul([[1, "two"], [3, 4]], [[1, 2], [3, 4]])
+        self.assertEqual(
+            str(ctx.exception), "m_a should contain only integers or floats"
+        )
+
+    def test_m_a_invalid_element_bool(self):
+        """Bool should be rejected despite being an int subclass in Python."""
+        with self.assertRaises(TypeError) as ctx:
+            matrix_mul([[1, True], [3, 4]], [[1, 2], [3, 4]])
+        self.assertEqual(
+            str(ctx.exception), "m_a should contain only integers or floats"
+        )
+
+    # Step 8: m_b element type checks
+    def test_m_b_invalid_element_string(self):
+        with self.assertRaises(TypeError) as ctx:
+            matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, "four"]])
+        self.assertEqual(
+            str(ctx.exception), "m_b should contain only integers or floats"
+        )
+
+    def test_m_b_invalid_element_bool(self):
+        with self.assertRaises(TypeError) as ctx:
+            matrix_mul([[1, 2], [3, 4]], [[1, False], [3, 4]])
+        self.assertEqual(
+            str(ctx.exception), "m_b should contain only integers or floats"
+        )
+
+    # Step 9: m_a row size consistency
+    def test_m_a_non_rectangular(self):
+        with self.assertRaises(TypeError) as ctx:
+            matrix_mul([[1, 2, 3], [4, 5]], [[1, 2], [3, 4], [5, 6]])
+        self.assertEqual(
+            str(ctx.exception), "each row of m_a must be of the same size"
+        )
+
+    # Step 10: m_b row size consistency
+    def test_m_b_non_rectangular(self):
+        with self.assertRaises(TypeError) as ctx:
+            matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4, 5]])
+        self.assertEqual(
+            str(ctx.exception), "each row of m_b must be of the same size"
+        )
+
+    # Step 11: Dimension incompatibility
+    def test_incompatible_dimensions(self):
+        # 2x2 matrix cannot be multiplied by 3x2 matrix
+        m_a = [[1, 2], [3, 4]]
+        m_b = [[1, 2], [3, 4], [5, 6]]
+        with self.assertRaises(ValueError) as ctx:
+            matrix_mul(m_a, m_b)
+        self.assertEqual(str(ctx.exception), "m_a and m_b can't be multiplied")
+
+
+if __name__ == "__main__":
+    unittest.main()
