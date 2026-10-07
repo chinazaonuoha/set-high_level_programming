@@ -3,7 +3,7 @@ Tests for 102-lazy_matrix_mul.py
 ==================================
 
 Importing function:
-    >>> lazy_matrix_mul = __import__('102-lazy_matrix_mul').lazy_matrix_mul
+    >>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
 
 ------------------------------
 Regular tests passed
