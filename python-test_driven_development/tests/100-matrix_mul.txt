@@ -1,164 +1,113 @@
-#!/usr/bin/python3
-"""Unittest for matrix_mul([m_a, m_b])."""
+==============================
+Tests for 100-matrix_mul.py
+==============================
 
-import unittest
+Import function:
+    >>> matrix_mul = __import__('100-matrix_mul').matrix_mul
 
-# Import matrix_mul dynamically to accommodate filenames like 100-matrix_mul.py
-matrix_mul = __import__("100-matrix_mul").matrix_mul
+------------------------------
+Regular tests passed
+------------------------------
+    >>> matrix_mul([[1, 2], [3, 4]], [[5, 6], [7, 8]])
+    [[19, 22], [43, 50]]
 
+    >>> matrix_mul([[1.5, 2.0], [3.0, 4.5]], [[2.0, 0.0], [0.0, 2.0]])
+    [[3.0, 4.0], [6.0, 9.0]]
 
-class TestMatrixMul(unittest.TestCase):
-    """Unit tests for matrix_mul function."""
+    >>> matrix_mul([[1, 2, 3], [4, 5, 6]], [[7, 8], [9, 1], [2, 3]])
+    [[31, 19], [85, 55]]
 
-    # -------------------------------------------------------------------------
-    # 1. Happy Path / Valid Operations
-    # -------------------------------------------------------------------------
+------------------------------
+Missing arguments
+------------------------------
+Missing one argument:
+    >>> matrix_mul([[1, 2], [3, 4]])
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix_mul() missing 1 required positional argument: 'm_b'
 
-    def test_valid_integer_matrices(self):
-        """Test m_a = List of lists of number / m_b = List of lists of number."""
-        m_a = [[1, 2], [3, 4]]
-        m_b = [[5, 6], [7, 8]]
-        expected = [[19, 22], [43, 50]]
-        self.assertEqual(matrix_mul(m_a, m_b), expected)
+Missing two arguments:
+    >>> matrix_mul()
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
 
-    def test_valid_float_and_int_matrices(self):
-        """Test matrix multiplication with floats and mixed integers."""
-        m_a = [[1.5, 2.0], [3.0, 4.5]]
-        m_b = [[2.0, 0.0], [0.0, 2.0]]
-        expected = [[3.0, 4.0], [6.0, 9.0]]
-        self.assertEqual(matrix_mul(m_a, m_b), expected)
+------------------------------
+Validation Errors (In Order)
+------------------------------
 
-    def test_valid_rectangular_matrices(self):
-        """Test multiplication of compatible non-square (rectangular) matrices."""
-        m_a = [[1, 2, 3], [4, 5, 6]]
-        m_b = [[7, 8], [9, 1], [2, 3]]
-        expected = [[31, 19], [85, 55]]
-        self.assertEqual(matrix_mul(m_a, m_b), expected)
+Test present: m_a = String / m_b = List of lists of number => TypeError: m_a must be a list
+    >>> matrix_mul("Not a list", [[1, 2], [3, 4]])
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a must be a list
 
-    # -------------------------------------------------------------------------
-    # 2. Argument Quantity Tests
-    # -------------------------------------------------------------------------
+Test present: m_a = List of lists of number / m_b = string => TypeError: m_b must be a list
+    >>> matrix_mul([[1, 2], [3, 4]], "Not a list")
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b must be a list
 
-    def test_missing_one_argument(self):
-        """Test present: missing one argument."""
-        with self.assertRaises(TypeError):
-            matrix_mul([[1, 2], [3, 4]])
+Test present: ma = List of integers / mb = List of lists of number => TypeError: m_a must be a list of lists
+    >>> matrix_mul([1, 2, 3], [[1, 2], [3, 4]])
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a must be a list of lists
 
-    def test_missing_two_arguments(self):
-        """Test present: missing two arguments."""
-        with self.assertRaises(TypeError):
-            matrix_mul()
+Test present: ma = List of lists of number / mb = List of integers => TypeError: m_b must be a list of lists
+    >>> matrix_mul([[1, 2], [3, 4]], [1, 2, 3])
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b must be a list of lists
 
-    # -------------------------------------------------------------------------
-    # 3. Exception & Validation Tests (In Specified Order)
-    # -------------------------------------------------------------------------
+Test present: m_a = empty / m_b = List of lists of number => ValueError: m_a can't be empty
+    >>> matrix_mul([], [[1, 2], [3, 4]])
+    Traceback (most recent call last):
+        ...
+    ValueError: m_a can't be empty
 
-    def test_m_a_string(self):
-        """Test m_a = String / m_b = List of lists of number."""
-        m_a = "Not a list"
-        m_b = [[1, 2], [3, 4]]
-        with self.assertRaises(TypeError) as ctx:
-            matrix_mul(m_a, m_b)
-        self.assertEqual(str(ctx.exception), "m_a must be a list")
+    >>> matrix_mul([[]], [[1, 2], [3, 4]])
+    Traceback (most recent call last):
+        ...
+    ValueError: m_a can't be empty
 
-    def test_m_b_string(self):
-        """Test m_a = List of lists of number / m_b = String."""
-        m_a = [[1, 2], [3, 4]]
-        m_b = "Not a list"
-        with self.assertRaises(TypeError) as ctx:
-            matrix_mul(m_a, m_b)
-        self.assertEqual(str(ctx.exception), "m_b must be a list")
+Test present: m_a = List of lists of number / m_b = Empty => ValueError: m_b can't be empty
+    >>> matrix_mul([[1, 2], [3, 4]], [])
+    Traceback (most recent call last):
+        ...
+    ValueError: m_b can't be empty
 
-    def test_m_a_list_of_integers(self):
-        """Test ma = List of integers / mb = List of lists of number."""
-        m_a = [1, 2, 3]
-        m_b = [[1, 2], [3, 4]]
-        with self.assertRaises(TypeError) as ctx:
-            matrix_mul(m_a, m_b)
-        self.assertEqual(str(ctx.exception), "m_a must be a list of lists")
+    >>> matrix_mul([[1, 2], [3, 4]], [[]])
+    Traceback (most recent call last):
+        ...
+    ValueError: m_b can't be empty
 
-    def test_m_b_list_of_integers(self):
-        """Test ma = List of lists of number / mb = List of integers."""
-        m_a = [[1, 2], [3, 4]]
-        m_b = [1, 2, 3]
-        with self.assertRaises(TypeError) as ctx:
-            matrix_mul(m_a, m_b)
-        self.assertEqual(str(ctx.exception), "m_b must be a list of lists")
+Test present: m_a = List of lists of not number / m_b = List of lists of number => TypeError: m_a should contain only integers or floats
+    >>> matrix_mul([[1, "two"], [3, 4]], [[1, 2], [3, 4]])
+    Traceback (most recent call last):
+        ...
+    TypeError: m_a should contain only integers or floats
 
-    def test_m_a_empty(self):
-        """Test m_a = empty / m_b = List of lists of number."""
-        m_a = []
-        m_b = [[1, 2], [3, 4]]
-        with self.assertRaises(ValueError) as ctx:
-            matrix_mul(m_a, m_b)
-        self.assertEqual(str(ctx.exception), "m_a can't be empty")
+Test present: m_a = List of lists of number / m_b = List of lists of not number => TypeError: m_b should contain only integers or floats
+    >>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, "four"]])
+    Traceback (most recent call last):
+        ...
+    TypeError: m_b should contain only integers or floats
 
-        with self.assertRaises(ValueError) as ctx:
-            matrix_mul([[]], m_b)
-        self.assertEqual(str(ctx.exception), "m_a can't be empty")
+Test present: m_a = List of lists of number various size / m_b = List of lists of number => TypeError: each row of m_a must should be of the same size
+    >>> matrix_mul([[1, 2, 3], [4, 5]], [[1, 2], [3, 4], [5, 6]])
+    Traceback (most recent call last):
+        ...
+    TypeError: each row of m_a must be of the same size
 
-    def test_m_b_empty(self):
-        """Test m_a = List of lists of number / m_b = Empty."""
-        m_a = [[1, 2], [3, 4]]
-        m_b = []
-        with self.assertRaises(ValueError) as ctx:
-            matrix_mul(m_a, m_b)
-        self.assertEqual(str(ctx.exception), "m_b can't be empty")
+Test present: m_a = List of lists of number / m_b = List of lists of number various size => TypeError: each row of m_b must should be of the same size
+    >>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4, 5]])
+    Traceback (most recent call last):
+        ...
+    TypeError: each row of m_b must be of the same size
 
-        with self.assertRaises(ValueError) as ctx:
-            matrix_mul(m_a, [[]])
-        self.assertEqual(str(ctx.exception), "m_b can't be empty")
-
-    def test_m_a_not_number(self):
-        """Test m_a = List of lists of not number / m_b = List of lists."""
-        m_a = [[1, "two"], [3, 4]]
-        m_b = [[1, 2], [3, 4]]
-        with self.assertRaises(TypeError) as ctx:
-            matrix_mul(m_a, m_b)
-        self.assertEqual(
-            str(ctx.exception), "m_a should contain only integers or floats"
-        )
-
-    def test_m_b_not_number(self):
-        """Test m_a = List of lists / m_b = List of lists of not number."""
-        m_a = [[1, 2], [3, 4]]
-        m_b = [[1, 2], [3, "four"]]
-        with self.assertRaises(TypeError) as ctx:
-            matrix_mul(m_a, m_b)
-        self.assertEqual(
-            str(ctx.exception), "m_b should contain only integers or floats"
-        )
-
-    def test_m_a_various_size(self):
-        """Test m_a = List of lists of number various size / m_b = List."""
-        m_a = [[1, 2, 3], [4, 5]]
-        m_b = [[1, 2], [3, 4], [5, 6]]
-        with self.assertRaises(TypeError) as ctx:
-            matrix_mul(m_a, m_b)
-        self.assertEqual(
-            str(ctx.exception), "each row of m_a must be of the same size"
-        )
-
-    def test_m_b_various_size(self):
-        """Test m_a = List / m_b = List of lists of number various size."""
-        m_a = [[1, 2], [3, 4]]
-        m_b = [[1, 2], [3, 4, 5]]
-        with self.assertRaises(TypeError) as ctx:
-            matrix_mul(m_a, m_b)
-        self.assertEqual(
-            str(ctx.exception), "each row of m_b must be of the same size"
-        )
-
-    def test_matrices_cant_be_multiplied(self):
-        """Test m_a = List / m_b = List but not correct dimensions."""
-        m_a = [[1, 2], [3, 4]]
-        m_b = [[1, 2], [3, 4], [5, 6]]
-        with self.assertRaises(ValueError) as ctx:
-            matrix_mul(m_a, m_b)
-        self.assertEqual(
-            str(ctx.exception), "m_a and m_b can't be multiplied"
-        )
-
-
-if __name__ == "__main__":
-    unittest.main()
+Test present: m_a = List of lists of number / m_b = List of lists of number but not correct => ValueError: m_a and m_b can't be multiplied.
+    >>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4], [5, 6]])
+    Traceback (most recent call last):
+        ...
+    ValueError: m_a and m_b can't be multiplied
