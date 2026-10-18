@@ -5,6 +5,7 @@ for all ID attributes across the project.
 """
 import os
 
+
 class Base:
     """A base class to manage 'id' attributes for future subclasses.
 
@@ -69,7 +70,7 @@ class Base:
             json_string (str): A string representing a list of dictionaries.
 
         Returns:
-            list: The list represented by json_string, or an empty list if 
+            list: The list represented by json_string, or an empty list if
             json_string is None or empty.
         """
         import json
@@ -109,7 +110,8 @@ class Base:
             cls (class): The class to instantiate instances for.
 
         Returns:
-            list: A list of instantiated objects, or an empty list if the file doesn't exist.
+            list: A list of instantiated objects, or an empty
+            list if the file doesn't exist.
         """
         filename = cls.__name__ + ".json"
         if not os.path.exists(filename):
@@ -152,7 +154,8 @@ class Base:
             cls (class): The class to instantiate instances for.
 
         Returns:
-            list: A list of instantiated objects, or an empty list if the file doesn't exist.
+            list: A list of instantiated objects, or an empty
+            list if the file doesn't exist.
         """
         filename = cls.__name__ + ".csv"
         import csv
@@ -193,7 +196,8 @@ class Base:
         pen.pensize(2)
 
         def draw_shape(obj, color):
-            """Helper inner function to draw a single shape with a specific color."""
+            """Helper inner function to draw a single shape with
+            a specific color."""
             pen.penup()
             pen.goto(obj.x, obj.y)
             pen.pendown()
