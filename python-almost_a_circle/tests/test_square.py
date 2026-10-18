@@ -69,3 +69,7 @@ class TestSquare(unittest.TestCase):
         """Test that initializing a Square with a non-integer x coordinate raises TypeError."""
         with self.assertRaises(TypeError):
             Square(1, "2")
+    def test_square_invalid_y_type(self):
+        """Test that initializing a Square with a non-integer y coordinate raises TypeError."""
+        with self.assertRaises(TypeError):
+            Square(1, 2, "3")
