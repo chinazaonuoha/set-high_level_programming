@@ -180,7 +180,18 @@ class TestRectangle(unittest.TestCase):
         }
         self.assertEqual(r_dict, expected_dict)
         self.assertIsInstance(r_dict, dict)
-
+    
+    def test_rectangle_save_to_file(self):
+        """Test saving Rectangle instances to a JSON file."""
+        r = Rectangle(5, 10, 2, 1, 9)
+        Rectangle.save_to_file([r])
+        # Add assertions to verify the file content
+        with open("Rectangle.json", "r") as f:
+            content = f.read()
+        self.assertIn('"width": 5', content)
+        self.assertIn('"height": 10', content)
+        self.assertIn('"x": 2', content)
+        self.assertIn('"y": 1', content)
 
 if __name__ == '__main__':
     unittest.main()
