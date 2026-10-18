@@ -172,3 +172,93 @@ class Base:
                 d = {k: int(v) for k, v in row.items()}
                 list_objs.append(cls.create(**d))
         return list_objs
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Opens a Turtle graphics window and draws all Rectangles and Squares.
+
+        Args:
+            list_rectangles (list): List of Rectangle instances to draw.
+            list_squares (list): List of Square instances to draw.
+        """
+        import turtle
+        import time
+
+        screen = turtle.Screen()
+        screen.title("Almost a Circle - Geometry Visualizer")
+        screen.bgcolor("white")
+
+        pen = turtle.Turtle()
+        pen.speed(3)
+        pen.pensize(2)
+
+        def draw_shape(obj, color):
+            """Helper inner function to draw a single shape with a specific color."""
+            pen.penup()
+            pen.goto(obj.x, obj.y)
+            pen.pendown()
+            pen.fillcolor(color)
+            pen.begin_fill()
+            if hasattr(obj, "size"):
+                w = h = obj.size
+            else:
+                w = obj.width
+                h = obj.height
+            for _ in range(2):
+                pen.forward(w)
+                pen.right(90)
+                pen.forward(h)
+                pen.right(90)
+
+            pen.end_fill()
+        pen.color("blue")
+        for rect in list_rectangles:
+            draw_shape(rect, "skyblue")
+        pen.color("darkred")
+        for sq in list_squares:
+            draw_shape(sq, "lightcoral")
+        turtle.done()
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draws rectangles and squares using the turtle graphics module.
+
+        Args:
+            list_rectangles (list): List of Rectangle instances to draw.
+            list_squares (list): List of Square instances to draw.
+        """
+        import turtle
+
+        screen = turtle.Screen()
+        screen.title("Almost a Circle - Drawing Shapes")
+        screen.bgcolor("white")
+
+        pen = turtle.Turtle()
+        pen.speed(1)
+
+        def draw_shape(shape, color):
+            """Draws a single shape with the specified color."""
+            pen.penup()
+            pen.goto(shape.x, shape.y)
+            pen.pendown()
+            pen.fillcolor(color)
+            pen.begin_fill()
+            if hasattr(shape, "size"):
+                for _ in range(4):
+                    pen.forward(shape.size)
+                    pen.right(90)
+            else:
+                for _ in range(2):
+                    pen.forward(shape.width)
+                    pen.right(90)
+                    pen.forward(shape.height)
+                    pen.right(90)
+            pen.end_fill()
+
+        for rectangle in list_rectangles:
+            draw_shape(rectangle, "blue")
+
+        for square in list_squares:
+            draw_shape(square, "red")
+
+        turtle.done()

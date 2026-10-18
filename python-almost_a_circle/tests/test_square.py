@@ -53,3 +53,19 @@ class TestSquare(unittest.TestCase):
         }
         self.assertEqual(s_dict, expected_dict)
         self.assertIsInstance(s_dict, dict)
+
+    def test_square_invalid_size_type(self):
+        """Test that initializing a Square with a non-integer size raises TypeError."""
+        with self.assertRaises(TypeError):
+            Square("1")
+
+        with self.assertRaises(TypeError):
+            Square([1])
+
+        with self.assertRaises(TypeError):
+            Square({"size": 1})
+
+    def test_square_invalid_x_type(self):
+        """Test that initializing a Square with a non-integer x coordinate raises TypeError."""
+        with self.assertRaises(TypeError):
+            Square(1, "2")
