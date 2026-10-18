@@ -4,6 +4,8 @@ from models.base import Base
 
 
 """Define the Rectangle class that inherits from Base."""
+
+
 class Rectangle(Base):
     """Represent a Rectangle class that inherits from Base."""
 
@@ -130,5 +132,3 @@ class Rectangle(Base):
             for key, value in kwargs.items():
                 if hasattr(self, key):
                     setattr(self, key, value)
-    
-    
