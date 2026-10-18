@@ -130,4 +130,13 @@ class Rectangle(Base):
                 if hasattr(self, key):
                     setattr(self, key, value)
     
-     
+    
+    def  Rectangle.save_to_file([]):
+        """Write the JSON string representation of list_objs to a file."""
+        filename = "Rectangle.json"
+        with open(filename, "w") as f:
+            if list_objs is None or len(list_objs) == 0:
+                f.write("[]")
+            else:
+                list_dicts = [obj.to_dictionary() for obj in list_objs]
+                f.write(Base.to_json_string(list_dicts))
