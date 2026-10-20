@@ -1,0 +1,30 @@
+# Python / Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+myenv/
+venv/
+ENV/
+env/
+.venv/
+
+# Environment Variables & Secrets
+.env
+*.pem
+*.key
+
+# Database & Dump Files
+*.sql
+*.sqlite3
+*.db
+
+# IDE & Editor Configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS-generated Files
+.DS_Store
+Thumbs.db
