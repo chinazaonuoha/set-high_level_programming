@@ -30,4 +30,3 @@ if __name__ == "__main__":
     print(", ".join([row[1] for row in results]))
     cursor.close()
     db.close()
-
