@@ -24,10 +24,10 @@ if __name__ == "__main__":
         "ORDER BY cities.id ASC"
     )
     cursor.execute(query, (sys.argv[4],))
-
     results = cursor.fetchall()
-    for row in results:
-        print(row)
 
+    # Format output as comma-separated city names
+    print(", ".join([row[1] for row in results]))
     cursor.close()
     db.close()
+
