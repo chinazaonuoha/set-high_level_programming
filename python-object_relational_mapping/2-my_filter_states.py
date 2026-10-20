@@ -22,10 +22,11 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     # Query constructed using Python string .format() as required
-    query = ("SELECT * FROM states WHERE BINARY name = '{}' ORDER BY id ASC"
-    .format(state_name_searched))
+    query = (
+        "SELECT * FROM states WHERE BINARY name = '{}' "
+        "ORDER BY id ASC".format(state_name_searched)
+        )
     cursor.execute(query)
-
     rows = cursor.fetchall()
     for row in rows:
         print(row)
