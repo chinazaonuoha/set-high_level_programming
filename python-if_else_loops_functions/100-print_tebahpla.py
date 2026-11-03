@@ -7,11 +7,7 @@
 def print_tebahpla():
     """Print the alphabet in reverse order."""
     for i in range(122, 96, -1):
-        if i % 2 == 0:
-            print(chr(i).lower(), end="")
-        else:
-            print(chr(i).upper(), end="")
-    print()
+        print("{}".format(chr(i if i % 2 == 0 else i - 32)), end="")
 
 if __name__ == "__main__":
     print_tebahpla()
