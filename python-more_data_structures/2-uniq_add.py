@@ -5,6 +5,7 @@ Write a function that adds all unique integers
 in a list (only once for each integer).
 """
 
+
 def uniq_add(my_list=[]):
     """
     Adds all unique integers in a list.
@@ -17,6 +18,6 @@ def uniq_add(my_list=[]):
     """
     # Use a set to store unique integers
     unique_integers = set(my_list)
-    
+
     # Return the sum of unique integers
     return sum(unique_integers)
