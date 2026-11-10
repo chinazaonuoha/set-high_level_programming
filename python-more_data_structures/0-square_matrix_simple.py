@@ -13,6 +13,7 @@ You are not allowed to import any module
 You are allowed to use regular loops, map, etc
 """
 
+
 def square_matrix_simple(matrix=[]):
     """
     Computes the square value of all integers of a matrix.
