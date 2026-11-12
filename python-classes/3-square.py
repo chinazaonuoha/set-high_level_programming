@@ -12,6 +12,7 @@ Public instance method: def area(self): that
 returns the current square area
 """
 
+
 class Square:
     """A class that defines a square."""
 
