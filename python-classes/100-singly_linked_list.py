@@ -12,7 +12,7 @@ property def next_node(self): to retrieve it
 property setter def next_node(self, value): to set it:
 next_node can be None or must be a Node, otherwise raise a
 TypeError exception with the message next_node must be a Node object
-Instantiation with data and next_node: 
+Instantiation with data and next_node:
 def __init__(self, data, next_node=None):
 
 
@@ -25,7 +25,8 @@ Should be printable:
 print the entire list in stdout
 one node number by line
 Public instance method: def sorted_insert(self, value):
-that inserts a new Node into the correct sorted position in the list (increasing order)
+that inserts a new Node into the correct
+sorted position in the list (increasing order)
 You are not allowed to import any module
 """
 
@@ -61,7 +62,6 @@ class Node:
         if value is not None and not isinstance(value, Node):
             raise TypeError("next_node must be a Node object")
         self.__next_node = value
-
 
 
 class SinglyLinkedList:
