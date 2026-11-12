@@ -6,6 +6,7 @@ Private instance attribute: size
 Instantiation with size (no type/value verification)
 """
 
+
 class Square:
     """A class that defines a square."""
 
