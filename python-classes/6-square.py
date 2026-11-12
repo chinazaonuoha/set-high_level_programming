@@ -22,7 +22,7 @@ returns the current square area
 Public instance method: def my_print(self):
 that prints in stdout the square with the character #:
 if size is equal to 0, print an empty line
-position should be use by using space - 
+position should be use by using space -
 Don't fill lines by spaces when position[1] > 0
 You are not allowed to import any module
 """
@@ -68,15 +68,16 @@ class Square:
         return self.__size ** 2
 
     def my_print(self):
-        """Print the square using the character # with respect to its position."""
+        """Print the square using the character
+        # with respect to its position."""
         if self.__size == 0:
             print()
             return
-        
+
         # Print vertical offset
         for _ in range(self.__position[1]):
             print()
-        
+
         # Print each row of the square with horizontal offset
         for _ in range(self.__size):
             print(" " * self.__position[0] + "#" * self.__size)
