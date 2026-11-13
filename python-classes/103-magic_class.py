@@ -21,3 +21,15 @@ class MagicClass:
         """Calculate and return the circumference based on the radius."""
         from math import pi
         return 2 * pi * self.__radius
+
+    @property
+    def radius(self):
+        """Retrieve the radius of the magic class."""
+        return self.__radius
+
+    @radius.setter
+    def radius(self, value):
+        """Set the radius of the magic class with validation."""
+        if not isinstance(value, (int, float)) or isinstance(value, bool):
+            raise TypeError("radius must be a number")
+        self.__radius = value
