@@ -10,6 +10,8 @@ class MagicClass:
     def __init__(self, radius=0):
         """Initialize the magic class with an optional radius."""
         self.__radius = 0
+        if not isinstance(radius, (int, float)) or isinstance(radius, bool):
+            raise TypeError("radius must be a number")
         self.__radius = radius
 
     def area(self):
