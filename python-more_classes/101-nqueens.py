@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import sys
 """
 The N queens puzzle is the challenge of placing N
@@ -19,7 +20,6 @@ Format: see example
 You don't have to print the solutions in a specific order
 You are only allowed to import the sys module
 """
-
 
 
 class NQueens:
