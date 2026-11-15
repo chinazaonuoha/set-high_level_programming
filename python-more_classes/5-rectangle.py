@@ -31,7 +31,7 @@ if width or height is equal to 0, return an empty string
 repr() should return a string representation of
 the rectangle to be able to recreate a new
 instance by using eval()
-Print the message Bye rectangle... 
+Print the message Bye rectangle...
 (... being 3 dots not ellipsis) when an instance of
 Rectangle is deleted
 You are not allowed to import any module
@@ -85,13 +85,15 @@ class Rectangle:
         return 2 * (self.__width + self.__height)
 
     def __str__(self):
-        """Return a string representation of the rectangle using '#' characters."""
+        """Return a string representation of the
+        rectangle using '#' characters."""
         if self.__width == 0 or self.__height == 0:
             return ""
         return "\n".join(["#" * self.__width for _ in range(self.__height)])
 
     def __repr__(self):
-        """Return a string representation to recreate a new instance using eval()."""
+        """Return a string representation to recreate
+        a new instance using eval()."""
         return f"Rectangle({self.__width}, {self.__height})"
 
     def __del__(self):
