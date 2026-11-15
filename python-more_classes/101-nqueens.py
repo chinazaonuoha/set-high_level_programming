@@ -1,3 +1,4 @@
+import sys
 """
 The N queens puzzle is the challenge of placing N
 non-attacking queens on an N×N chessboard.
@@ -18,6 +19,7 @@ Format: see example
 You don't have to print the solutions in a specific order
 You are only allowed to import the sys module
 """
+
 
 
 class NQueens:
@@ -54,3 +56,23 @@ class NQueens:
         """Print all the solutions found."""
         for solution in self.solutions:
             print([[i, solution[i]] for i in range(self.n)])
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: nqueens N")
+        sys.exit(1)
+
+    try:
+        n = int(sys.argv[1])
+    except ValueError:
+        print("N must be a number")
+        sys.exit(1)
+
+    if n < 4:
+        print("N must be at least 4")
+        sys.exit(1)
+
+    solver = NQueens(n)
+    solver.solve()
+    solver.print_solutions()
