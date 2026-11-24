@@ -1,3 +1,3 @@
+#!/usr/bin/env python3
 def copy_list(l):
-    """Return a copy of the list l."""
     return l[:]
