@@ -7,6 +7,7 @@ Pascal's triangle with `n` rows.
 """
 
 def pascal_triangle(n):
+    """Generate Pascal's triangle up to `n` rows."""
     triangle = []
     for i in range(n):
         row = [1] * (i + 1)
