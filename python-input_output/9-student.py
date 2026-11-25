@@ -27,4 +27,3 @@ class Student:
             return {
                 attr: getattr(self, attr)
             }
-        }
