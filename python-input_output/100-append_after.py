@@ -3,7 +3,8 @@
 
 
 def append_after(filename="", search_string="", new_string=""):
-    """Inserts new_string after each line containing search_string in filename."""
+    """Inserts new_string after each line
+    containing search_string in filename."""
     with open(filename, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
