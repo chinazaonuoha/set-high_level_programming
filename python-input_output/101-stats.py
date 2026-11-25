@@ -14,7 +14,8 @@ def print_metrics(total_file_size, status_codes):
 
 
 def process_line(line):
-    """Parses a single log line and extracts file size and status code."""
+    """Parses a single log line and extracts
+    file size and status code."""
     parts = line.split()
     
     if len(parts) < 2:
@@ -22,9 +23,13 @@ def process_line(line):
 
     try:
         file_size = int(parts[-1])
+    except (ValueError, IndexError):
+        file_size = 0
+
+    try:
         status_code = int(parts[-2])
     except (ValueError, IndexError):
-        return 0, None
+        status_code = None
 
     return file_size, status_code
 
