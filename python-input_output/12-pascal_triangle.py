@@ -6,6 +6,7 @@ as input and returns a list of lists representing
 Pascal's triangle with `n` rows.
 """
 
+
 def pascal_triangle(n):
     """Generate Pascal's triangle up to `n` rows."""
     triangle = []
